@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, Settings, User, Heart, Brain, FileText, MessageSquare } from "lucide-react";
+import { Home, Settings, User, Heart, Brain, FileText, MessageSquare, Calendar, Dumbbell } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function WebsiteHeader() {
