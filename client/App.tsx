@@ -24,6 +24,11 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/medbot" element={<MedBot />} />
+          <Route path="/medbot/mental-health" element={<MentalHealth />} />
+          <Route path="/medbot/check-in" element={<CheckIn />} />
+          <Route path="/medbot/blood-sugar" element={<BloodSugar />} />
+          <Route path="/medbot/questions" element={<QuestionsToAsk />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
