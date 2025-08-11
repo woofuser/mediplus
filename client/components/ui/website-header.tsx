@@ -8,8 +8,10 @@ export function WebsiteHeader() {
 
   const navItems = [
     { icon: Home, label: "Home", path: "/medbot/home" },
+    { icon: Calendar, label: "Appointments", path: "/medbot/appointments" },
     { icon: FileText, label: "Check-In", path: "/medbot/check-in" },
     { icon: Brain, label: "Mental Health", path: "/medbot/mental-health" },
+    { icon: Dumbbell, label: "Exercise", path: "/medbot/exercise-wellness" },
     { icon: Heart, label: "Health Overview", path: "/medbot/health-overview" },
     { icon: MessageSquare, label: "MedBot Chat", path: "/medbot" },
     { icon: Settings, label: "Services", path: "/medbot/services" },
