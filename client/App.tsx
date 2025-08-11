@@ -13,6 +13,8 @@ import MentalHealth from "./pages/MentalHealth";
 import CheckIn from "./pages/CheckIn";
 import BloodSugar from "./pages/BloodSugar";
 import QuestionsToAsk from "./pages/QuestionsToAsk";
+import Services from "./pages/Services";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
