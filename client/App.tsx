@@ -31,6 +31,8 @@ const App = () => (
           <Route path="/medbot/check-in" element={<CheckIn />} />
           <Route path="/medbot/blood-sugar" element={<BloodSugar />} />
           <Route path="/medbot/questions" element={<QuestionsToAsk />} />
+          <Route path="/medbot/services" element={<Services />} />
+          <Route path="/medbot/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
