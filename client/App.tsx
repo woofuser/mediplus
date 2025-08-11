@@ -15,6 +15,10 @@ import BloodSugar from "./pages/BloodSugar";
 import QuestionsToAsk from "./pages/QuestionsToAsk";
 import Services from "./pages/Services";
 import Profile from "./pages/Profile";
+import HomeDashboard from "./pages/HomeDashboard";
+import HealthOverview from "./pages/HealthOverview";
+import BloodPressureOverview from "./pages/BloodPressureOverview";
+import WelcomePage from "./pages/WelcomePage";
 
 const queryClient = new QueryClient();
 
