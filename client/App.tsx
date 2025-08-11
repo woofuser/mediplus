@@ -30,13 +30,17 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/medbot" element={<MedBot />} />
+          <Route path="/medbot/home" element={<HomeDashboard />} />
           <Route path="/medbot/mental-health" element={<MentalHealth />} />
           <Route path="/medbot/check-in" element={<CheckIn />} />
           <Route path="/medbot/blood-sugar" element={<BloodSugar />} />
           <Route path="/medbot/questions" element={<QuestionsToAsk />} />
           <Route path="/medbot/services" element={<Services />} />
           <Route path="/medbot/profile" element={<Profile />} />
+          <Route path="/medbot/health-overview" element={<HealthOverview />} />
+          <Route path="/medbot/blood-pressure-overview" element={<BloodPressureOverview />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
