@@ -151,6 +151,14 @@ export default function HomeDashboard() {
                   </div>
                   <ChevronRight className="w-4 h-4 text-gray-400" />
                 </Link>
+
+                <Link to="/medbot/mindful-bot" className="flex items-center justify-between p-3 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Brain className="w-5 h-5 text-indigo-600" />
+                    <span className="text-black font-medium">MindfulBot Chat</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                </Link>
               </div>
             </div>
 
