@@ -1,6 +1,6 @@
 import { WebsiteHeader } from "@/components/ui/website-header";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, ChevronRight, Calendar, Users, Dumbbell } from "lucide-react";
+import { AlertTriangle, ChevronRight, Calendar, Users, Dumbbell, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function HomeDashboard() {
