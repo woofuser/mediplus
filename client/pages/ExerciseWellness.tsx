@@ -39,9 +39,12 @@ export default function ExerciseWellness() {
                     Move at your own pace, your well-being matters, and every step counts.
                   </p>
                   <div className="mb-4">
-                    {/* Decorative illustration placeholder */}
-                    <div className="w-32 h-24 bg-blue-200 rounded-2xl flex items-center justify-center">
-                      <div className="w-20 h-16 bg-blue-300 rounded-xl"></div>
+                    <div className="w-80 h-48 bg-gradient-to-r from-purple-200 to-purple-300 rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2Fff0f299aaa3b4dd88a111cb5829ef3f4%2F3e0a1aa261aa4b92b22a0deb6251629a?format=webp&width=800"
+                        alt="Woman doing side plank exercise - Move with purpose. These exercises are here to support a stronger, more balanced you."
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                 </div>
