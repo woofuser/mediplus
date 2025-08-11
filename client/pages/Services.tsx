@@ -43,6 +43,12 @@ export default function Services() {
       description: "Mindfulness and meditation guidance"
     },
     {
+      icon: Brain,
+      title: "MindfulBot",
+      link: "/medbot/mindful-bot",
+      description: "AI-powered mental health support and guidance"
+    },
+    {
       icon: Dumbbell,
       title: "Exercise & Wellness",
       link: "/medbot/exercise-wellness",
