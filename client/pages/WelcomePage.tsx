@@ -56,12 +56,12 @@ export default function WelcomePage() {
       </div>
 
       {/* Bottom branding */}
-      <div className="relative z-10 p-6">
-        <div className="bg-white bg-opacity-80 rounded-2xl p-4 flex items-center justify-center">
-          <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/c0582bc7911b06f4a7cd3ecb96bb44d16fe96d4d?width=446" 
-            alt="Powered by SingPass" 
-            className="h-8 opacity-70"
+      <div className="relative z-10 p-8">
+        <div className="bg-white bg-opacity-80 rounded-3xl p-6 flex items-center justify-center max-w-sm mx-auto">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/c0582bc7911b06f4a7cd3ecb96bb44d16fe96d4d?width=446"
+            alt="Powered by SingPass"
+            className="h-10 opacity-70"
           />
         </div>
       </div>
