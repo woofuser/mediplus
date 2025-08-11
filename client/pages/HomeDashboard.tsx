@@ -45,7 +45,7 @@ export default function HomeDashboard() {
           <p className="text-red-600 font-medium text-sm mb-3">Needs update</p>
 
           <div className="text-right">
-            <span className="text-black text-xs italic">> More Information</span>
+            <span className="text-black text-xs italic">&gt; More Information</span>
           </div>
 
           {/* Health Overview Button */}
@@ -93,7 +93,7 @@ export default function HomeDashboard() {
           </div>
 
           <div className="text-right mt-3">
-            <span className="text-black text-xs italic">> More Information</span>
+            <span className="text-black text-xs italic">&gt; More Information</span>
           </div>
         </div>
 
