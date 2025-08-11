@@ -20,7 +20,7 @@ export default function Services() {
     {
       icon: Calendar,
       title: "Appointments",
-      link: "#",
+      link: "/medbot/appointments",
       description: "Schedule and manage medical appointments"
     },
     {
@@ -38,14 +38,14 @@ export default function Services() {
     },
     {
       icon: Activity,
-      title: "MindfulBot",
-      link: "#",
+      title: "Mental Health Resources",
+      link: "/medbot/mental-health-resources",
       description: "Mindfulness and meditation guidance"
     },
     {
       icon: Dumbbell,
       title: "Exercise & Wellness",
-      link: "#",
+      link: "/medbot/exercise-wellness",
       description: "Fitness tracking and workout plans"
     },
     {
@@ -57,7 +57,7 @@ export default function Services() {
     {
       icon: ClipboardList,
       title: "Mental Health Overview",
-      link: "#",
+      link: "/medbot/mental-health-overview",
       description: "Mental wellness tracking and reports"
     },
     {
