@@ -3,6 +3,7 @@ import { BottomNavigation } from "@/components/ui/bottom-navigation";
 import { MedBotAvatar } from "@/components/medbot-avatar";
 import { Button } from "@/components/ui/button";
 import { Plus, Send, Camera, Mic } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function MedBot() {
   return (
