@@ -8,17 +8,17 @@ export default function WelcomePage() {
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Teal blob */}
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-teal-200 rounded-full opacity-60"></div>
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-teal-200 rounded-full opacity-40"></div>
         {/* Pink blob */}
-        <div className="absolute top-20 -left-20 w-48 h-48 bg-pink-200 rounded-full opacity-60"></div>
+        <div className="absolute top-32 -left-32 w-80 h-80 bg-pink-200 rounded-full opacity-40"></div>
         {/* Yellow blob */}
-        <div className="absolute bottom-20 -right-20 w-56 h-56 bg-yellow-200 rounded-full opacity-60"></div>
+        <div className="absolute bottom-32 -right-32 w-88 h-88 bg-yellow-200 rounded-full opacity-40"></div>
         {/* Purple blob */}
-        <div className="absolute bottom-0 -left-20 w-64 h-64 bg-purple-200 rounded-full opacity-60"></div>
+        <div className="absolute bottom-0 -left-32 w-96 h-96 bg-purple-200 rounded-full opacity-40"></div>
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 space-y-8 relative z-10">
+      <div className="flex-1 flex flex-col items-center justify-center px-8 space-y-12 relative z-10 max-w-4xl mx-auto">
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <div className="w-16 h-16 bg-purple-200 rounded-2xl flex items-center justify-center">
