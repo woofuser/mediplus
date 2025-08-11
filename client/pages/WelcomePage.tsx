@@ -20,33 +20,36 @@ export default function WelcomePage() {
       {/* Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-8 space-y-12 relative z-10 max-w-4xl mx-auto">
         {/* Logo */}
-        <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-purple-200 rounded-2xl flex items-center justify-center">
+        <div className="flex items-center space-x-6">
+          <div className="w-24 h-24 bg-purple-200 rounded-3xl flex items-center justify-center">
             <div className="relative">
-              <div className="w-8 h-8 bg-blue-400 rounded-sm"></div>
-              <div className="absolute -top-1 -right-1 w-6 h-6 bg-pink-400 rounded-sm"></div>
-              <div className="absolute -bottom-1 -left-1 w-6 h-6 bg-yellow-400 rounded-sm"></div>
+              <div className="w-12 h-12 bg-blue-400 rounded-lg"></div>
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-pink-400 rounded-lg"></div>
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-yellow-400 rounded-lg"></div>
             </div>
           </div>
-          
+
           <div>
-            <h1 className="text-3xl font-bold text-black">
+            <h1 className="text-5xl font-bold text-black">
               Medi<span className="text-purple-600">Plus</span>
             </h1>
-            <p className="text-gray-600 text-sm">Track. Prevent. Thrive.</p>
+            <p className="text-gray-600 text-lg">Track. Prevent. Thrive.</p>
           </div>
         </div>
 
         {/* Welcome message */}
-        <div className="text-center space-y-4">
-          <h2 className="text-xl font-light text-black leading-relaxed">
+        <div className="text-center space-y-6">
+          <h2 className="text-3xl font-light text-black leading-relaxed max-w-2xl">
             Welcome to your one stop health companion
           </h2>
+          <p className="text-gray-600 text-lg max-w-xl">
+            Monitor your vitals, track medications, manage mental health, and get AI-powered insights to improve your wellbeing.
+          </p>
         </div>
 
         {/* Get Started Button */}
-        <Link to="/medbot/home" className="w-full max-w-xs">
-          <Button className="w-full py-4 bg-teal-500 hover:bg-teal-600 text-white text-lg font-semibold rounded-2xl">
+        <Link to="/medbot/home" className="w-full max-w-md">
+          <Button className="w-full py-6 bg-teal-500 hover:bg-teal-600 text-white text-xl font-semibold rounded-2xl transition-colors">
             Get Started
           </Button>
         </Link>
