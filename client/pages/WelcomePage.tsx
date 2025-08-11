@@ -1,11 +1,9 @@
-import { MobileStatusBar } from "@/components/ui/mobile-status-bar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 export default function WelcomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-100 via-pink-50 to-yellow-50 flex flex-col max-w-md mx-auto relative overflow-hidden">
-      <MobileStatusBar />
+    <div className="min-h-screen bg-gradient-to-br from-teal-100 via-pink-50 to-yellow-50 flex flex-col relative overflow-hidden">
       
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
