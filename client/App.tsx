@@ -19,6 +19,13 @@ import HomeDashboard from "./pages/HomeDashboard";
 import HealthOverview from "./pages/HealthOverview";
 import BloodPressureOverview from "./pages/BloodPressureOverview";
 import WelcomePage from "./pages/WelcomePage";
+import Appointments from "./pages/Appointments";
+import HealthProfiles from "./pages/HealthProfiles";
+import MentalHealthResources from "./pages/MentalHealthResources";
+import CalvesExercises from "./pages/CalvesExercises";
+import MentalHealthOverview from "./pages/MentalHealthOverview";
+import ExerciseWellness from "./pages/ExerciseWellness";
+import BodyExercises from "./pages/BodyExercises";
 
 const queryClient = new QueryClient();
 
