@@ -124,6 +124,36 @@ export default function HomeDashboard() {
               </div>
             </div>
 
+            {/* Quick Links */}
+            <div className="bg-white rounded-3xl p-6 border border-gray-200">
+              <h3 className="text-xl font-bold text-black mb-4">Quick Access</h3>
+              <div className="space-y-3">
+                <Link to="/medbot/appointments" className="flex items-center justify-between p-3 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Calendar className="w-5 h-5 text-blue-600" />
+                    <span className="text-black font-medium">Appointments</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                </Link>
+
+                <Link to="/medbot/exercise-wellness" className="flex items-center justify-between p-3 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Dumbbell className="w-5 h-5 text-green-600" />
+                    <span className="text-black font-medium">Exercise Wellness</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                </Link>
+
+                <Link to="/medbot/mental-health-resources" className="flex items-center justify-between p-3 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Users className="w-5 h-5 text-purple-600" />
+                    <span className="text-black font-medium">Mental Health Resources</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                </Link>
+              </div>
+            </div>
+
             {/* MedBot Chat */}
             <Link to="/medbot">
               <div className="bg-teal-500 rounded-3xl p-6 flex items-center gap-4 hover:bg-teal-600 transition-colors">
