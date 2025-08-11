@@ -1,5 +1,4 @@
-import { MobileStatusBar } from "@/components/ui/mobile-status-bar";
-import { BottomNavigation } from "@/components/ui/bottom-navigation";
+import { WebsiteHeader } from "@/components/ui/website-header";
 import { MedBotAvatar } from "@/components/medbot-avatar";
 import { Button } from "@/components/ui/button";
 import { Plus, Send, Camera, Mic } from "lucide-react";
@@ -7,8 +6,8 @@ import { Link } from "react-router-dom";
 
 export default function MedBot() {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col max-w-md mx-auto">
-      <MobileStatusBar />
+    <div className="min-h-screen bg-gray-50">
+      <WebsiteHeader />
       
       {/* Header */}
       <div className="bg-teal-200 px-6 py-4 flex items-center gap-3">
