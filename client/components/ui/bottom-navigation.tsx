@@ -6,7 +6,7 @@ export function BottomNavigation() {
   const location = useLocation();
 
   const navItems = [
-    { icon: Home, label: "Home", path: "/medbot" },
+    { icon: Home, label: "Home", path: "/medbot/home" },
     { icon: Settings, label: "Services", path: "/medbot/services" },
     { icon: User, label: "Profile", path: "/medbot/profile" },
   ];
