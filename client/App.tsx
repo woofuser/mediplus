@@ -26,6 +26,7 @@ import CalvesExercises from "./pages/CalvesExercises";
 import MentalHealthOverview from "./pages/MentalHealthOverview";
 import ExerciseWellness from "./pages/ExerciseWellness";
 import BodyExercises from "./pages/BodyExercises";
+import MindfulBot from "./pages/MindfulBot";
 
 const queryClient = new QueryClient();
 
