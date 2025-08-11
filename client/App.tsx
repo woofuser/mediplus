@@ -48,6 +48,13 @@ const App = () => (
           <Route path="/medbot/profile" element={<Profile />} />
           <Route path="/medbot/health-overview" element={<HealthOverview />} />
           <Route path="/medbot/blood-pressure-overview" element={<BloodPressureOverview />} />
+          <Route path="/medbot/appointments" element={<Appointments />} />
+          <Route path="/medbot/health-profiles" element={<HealthProfiles />} />
+          <Route path="/medbot/mental-health-resources" element={<MentalHealthResources />} />
+          <Route path="/medbot/calves-exercises" element={<CalvesExercises />} />
+          <Route path="/medbot/mental-health-overview" element={<MentalHealthOverview />} />
+          <Route path="/medbot/exercise-wellness" element={<ExerciseWellness />} />
+          <Route path="/medbot/body-exercises" element={<BodyExercises />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
