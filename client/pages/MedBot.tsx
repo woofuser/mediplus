@@ -47,18 +47,30 @@ export default function MedBot() {
 
         {/* Action Buttons */}
         <div className="space-y-3 pt-4">
-          <Button 
-            variant="outline" 
-            className="w-full py-4 rounded-full bg-pink-300 border-pink-300 text-black font-medium hover:bg-pink-400"
-          >
-            General Enquiry
-          </Button>
-          <Button 
-            variant="outline" 
-            className="w-full py-4 rounded-full bg-pink-300 border-pink-300 text-black font-medium hover:bg-pink-400"
-          >
-            Emergency Assistance
-          </Button>
+          <Link to="/medbot/mental-health">
+            <Button
+              variant="outline"
+              className="w-full py-4 rounded-full bg-pink-300 border-pink-300 text-black font-medium hover:bg-pink-400"
+            >
+              Mental Health
+            </Button>
+          </Link>
+          <Link to="/medbot/check-in">
+            <Button
+              variant="outline"
+              className="w-full py-4 rounded-full bg-pink-300 border-pink-300 text-black font-medium hover:bg-pink-400"
+            >
+              Check-In & Vitals
+            </Button>
+          </Link>
+          <Link to="/medbot/questions">
+            <Button
+              variant="outline"
+              className="w-full py-4 rounded-full bg-pink-300 border-pink-300 text-black font-medium hover:bg-pink-400"
+            >
+              Questions for Doctor
+            </Button>
+          </Link>
         </div>
       </div>
 
