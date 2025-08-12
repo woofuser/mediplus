@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import demoRoutes from './routes/demo.js';
-import chatRoutes from './routes/chat.js';
+import demoRoutes from './routes/demo';
+import chatRoutes from './routes/chat';
 
 // Load environment variables
 dotenv.config();
