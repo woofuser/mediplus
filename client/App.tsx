@@ -28,6 +28,7 @@ import ExerciseWellness from "./pages/ExerciseWellness";
 import BodyExercises from "./pages/BodyExercises";
 import MindfulBot from "./pages/MindfulBot";
 import MedBotChat from "./pages/MedBotChat";
+import DeveloperDashboard from "./pages/DeveloperDashboard";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,7 @@ const App = () => (
           <Route path="/medbot/body-exercises" element={<BodyExercises />} />
           <Route path="/medbot/mindful-bot" element={<MindfulBot />} />
           <Route path="/medbot/medbot-chat" element={<MedBotChat />} />
+          <Route path="/developer" element={<DeveloperDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
