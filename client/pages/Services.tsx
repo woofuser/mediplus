@@ -49,6 +49,12 @@ export default function Services() {
       description: "AI-powered mental health support and guidance"
     },
     {
+      icon: Heart,
+      title: "MedBot Assistant",
+      link: "/medbot/medbot-chat",
+      description: "AI medical information and health guidance"
+    },
+    {
       icon: Dumbbell,
       title: "Exercise & Wellness",
       link: "/medbot/exercise-wellness",
