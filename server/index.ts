@@ -7,50 +7,57 @@ import chatRoutes from './routes/chat.js';
 // Load environment variables
 dotenv.config();
 
-const app = express();
-const port = process.env.PORT || 3001;
+export function createServer() {
+  const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+  // Middleware
+  app.use(cors());
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use('/api/demo', demoRoutes);
-app.use('/api', chatRoutes);
+  // Routes
+  app.use('/api/demo', demoRoutes);
+  app.use('/api', chatRoutes);
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'healthy', 
-    timestamp: new Date().toISOString(),
-    services: {
-      chat: 'active',
-      demo: 'active'
-    }
+  // Health check
+  app.get('/api/health', (req, res) => {
+    res.json({ 
+      status: 'healthy', 
+      timestamp: new Date().toISOString(),
+      services: {
+        chat: 'active',
+        demo: 'active'
+      }
+    });
   });
-});
 
-// Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error('Server Error:', err);
-  res.status(500).json({
-    success: false,
-    error: 'Internal server error',
-    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+  // Error handling middleware
+  app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.error('Server Error:', err);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+      message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+    });
   });
-});
 
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Not found',
-    message: `Route ${req.originalUrl} not found`
+  // 404 handler
+  app.use('*', (req, res) => {
+    res.status(404).json({
+      success: false,
+      error: 'Not found',
+      message: `Route ${req.originalUrl} not found`
+    });
   });
-});
 
-if (process.env.NODE_ENV !== 'test') {
+  return app;
+}
+
+// Only start the server when this file is run directly (not imported)
+if (require.main === module) {
+  const app = createServer();
+  const port = process.env.PORT || 3001;
+  
   app.listen(port, () => {
     console.log(`🚀 Server running on port ${port}`);
     console.log(`🤖 Chat API available at http://localhost:${port}/api/chat`);
@@ -70,4 +77,4 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-export default app;
+export default createServer();
