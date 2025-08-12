@@ -39,11 +39,11 @@ export default function ExerciseWellness() {
                 </p>
 
                 <div className="flex justify-center mb-4">
-                  <div className="w-80 h-48 bg-gradient-to-r from-purple-200 to-purple-300 rounded-2xl overflow-hidden shadow-lg">
+                  <div className="w-96 h-auto bg-gradient-to-r from-purple-200 to-purple-300 rounded-2xl overflow-hidden shadow-lg p-2">
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2Fff0f299aaa3b4dd88a111cb5829ef3f4%2F3e0a1aa261aa4b92b22a0deb6251629a?format=webp&width=800"
                       alt="Woman doing side plank exercise - Move with purpose. These exercises are here to support a stronger, more balanced you."
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-contain rounded-xl"
                     />
                   </div>
                 </div>
