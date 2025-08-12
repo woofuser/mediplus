@@ -1,10 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
 console.log("🚀 Starting React application...");
 
-const root = document.getElementById('root');
+const root = document.getElementById("root");
 
 if (!root) {
   console.error("❌ Root element not found!");
@@ -21,7 +21,7 @@ if (!root) {
   `;
 } else {
   console.log("✅ Root element found, mounting React app...");
-  
+
   try {
     const reactRoot = ReactDOM.createRoot(root);
     reactRoot.render(<App />);

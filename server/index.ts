@@ -1,9 +1,9 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import demoRoutes from './routes/demo';
-import chatRoutes from './routes/chat';
-import testRoutes from './routes/test';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import demoRoutes from "./routes/demo";
+import chatRoutes from "./routes/chat";
+import testRoutes from "./routes/test";
 
 // Load environment variables
 dotenv.config();
@@ -13,37 +13,47 @@ export function createServer() {
 
   // Middleware
   app.use(cors());
-  app.use(express.json({ limit: '10mb' }));
+  app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true }));
 
   // Routes (without /api prefix since Vite handles that)
-  app.use('/demo', demoRoutes);
-  app.use('/test', testRoutes);
-  app.use('/', chatRoutes);
+  app.use("/demo", demoRoutes);
+  app.use("/test", testRoutes);
+  app.use("/", chatRoutes);
 
   // Health check
-  app.get('/health', (req, res) => {
-    res.json({ 
-      status: 'healthy', 
+  app.get("/health", (req, res) => {
+    res.json({
+      status: "healthy",
       timestamp: new Date().toISOString(),
       services: {
-        chat: 'active',
-        demo: 'active'
+        chat: "active",
+        demo: "active",
       },
-      environment: process.env.NODE_ENV || 'development',
-      server: 'inline-vite'
+      environment: process.env.NODE_ENV || "development",
+      server: "inline-vite",
     });
   });
 
   // Error handling middleware
-  app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.error('Server Error:', err);
-    res.status(500).json({
-      success: false,
-      error: 'Internal server error',
-      message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
-    });
-  });
+  app.use(
+    (
+      err: any,
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction,
+    ) => {
+      console.error("Server Error:", err);
+      res.status(500).json({
+        success: false,
+        error: "Internal server error",
+        message:
+          process.env.NODE_ENV === "development"
+            ? err.message
+            : "Something went wrong",
+      });
+    },
+  );
 
   return app;
 }

@@ -34,11 +34,11 @@ function expressPlugin(): Plugin {
 
       // Add Express app as middleware to Vite dev server
       // This makes all API routes available on the same port as the frontend
-      server.middlewares.use('/api', app);
-      
-      console.log('🚀 Express server mounted on /api routes');
-      console.log('🤖 Chat API available at http://localhost:8080/api/chat');
-      console.log('📊 Health check at http://localhost:8080/api/health');
+      server.middlewares.use("/api", app);
+
+      console.log("🚀 Express server mounted on /api routes");
+      console.log("🤖 Chat API available at http://localhost:8080/api/chat");
+      console.log("📊 Health check at http://localhost:8080/api/health");
     },
   };
 }
