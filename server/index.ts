@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import demoRoutes from './routes/demo';
 import chatRoutes from './routes/chat';
+import testRoutes from './routes/test';
 
 // Load environment variables
 dotenv.config();
@@ -17,6 +18,7 @@ export function createServer() {
 
   // Routes (without /api prefix since Vite handles that)
   app.use('/demo', demoRoutes);
+  app.use('/test', testRoutes);
   app.use('/', chatRoutes);
 
   // Health check
