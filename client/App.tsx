@@ -17,7 +17,6 @@ import Profile from "./pages/Profile";
 import HomeDashboard from "./pages/HomeDashboard";
 import HealthOverview from "./pages/HealthOverview";
 import BloodPressureOverview from "./pages/BloodPressureOverview";
-import WelcomePage from "./pages/WelcomePage";
 import Appointments from "./pages/Appointments";
 import HealthProfiles from "./pages/HealthProfiles";
 import MentalHealthResources from "./pages/MentalHealthResources";
@@ -40,7 +39,6 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/welcome" element={<WelcomePage />} />
             <Route path="/medbot" element={<MedBot />} />
             <Route path="/medbot/home" element={<HomeDashboard />} />
             <Route path="/medbot/mental-health" element={<MentalHealth />} />

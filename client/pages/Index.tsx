@@ -11,7 +11,7 @@ export default function Index() {
         <p className="text-slate-600 max-w-md">
           Your AI-powered health assistant for tracking vitals, mental health, and medical questions.
         </p>
-        <Link to="/welcome">
+        <Link to="/medbot/home">
           <Button className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 text-lg">
             Get Started
           </Button>
