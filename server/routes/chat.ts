@@ -8,6 +8,18 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const DEVELOPER_WEBHOOK_URL = process.env.DEVELOPER_WEBHOOK_URL;
 const DEVELOPER_EMAIL = process.env.DEVELOPER_EMAIL || 'developer@medbot.com';
 
+// In-memory storage for chat history (in production, use a database)
+const chatHistory: Array<{
+  sessionId: string;
+  botType: string;
+  userMessage: string;
+  botResponse: string;
+  timestamp: string;
+  userId?: string;
+  mood?: string;
+  error?: string;
+}> = [];
+
 // Validation schemas
 const ChatMessageSchema = z.object({
   message: z.string().min(1).max(2000),
@@ -48,6 +60,7 @@ async function callLLM(prompt: string, botType: 'mindful' | 'medbot', context?: 
   };
 
   if (!OPENAI_API_KEY) {
+    console.log('⚠️  OpenAI API key not configured, using fallback responses');
     // Fallback responses if no API key
     const fallbackResponses = {
       mindful: [
@@ -68,6 +81,7 @@ async function callLLM(prompt: string, botType: 'mindful' | 'medbot', context?: 
   }
 
   try {
+    console.log(`🤖 Making LLM request for ${botType} bot`);
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -87,15 +101,18 @@ async function callLLM(prompt: string, botType: 'mindful' | 'medbot', context?: 
     });
 
     if (!response.ok) {
-      throw new Error(`LLM API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error(`❌ LLM API error ${response.status}:`, errorText);
+      throw new Error(`LLM API error: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
+    console.log('✅ LLM response received successfully');
     return data.choices[0]?.message?.content || "I'm here to help, but I'm having trouble responding right now. Please try again.";
     
   } catch (error) {
-    console.error('LLM API Error:', error);
-    return "I'm experiencing some technical difficulties. Please try again in a moment.";
+    console.error('❌ LLM API Error:', error);
+    throw error;
   }
 }
 
@@ -108,13 +125,17 @@ async function notifyDeveloper(data: {
   timestamp: string;
   userId?: string;
   mood?: string;
+  error?: string;
 }) {
   try {
+    // Store in memory (in production, save to database)
+    chatHistory.push(data);
+
     // Email notification (if configured)
     if (DEVELOPER_EMAIL) {
       console.log('📧 Developer Notification:', {
         to: DEVELOPER_EMAIL,
-        subject: `${data.botType.toUpperCase()} Chat Activity`,
+        subject: `${data.botType.toUpperCase()} Chat Activity${data.error ? ' - ERROR' : ''}`,
         message: `New chat interaction:
         
 Bot: ${data.botType}
@@ -122,6 +143,7 @@ Session: ${data.sessionId}
 User ID: ${data.userId || 'Anonymous'}
 Mood: ${data.mood || 'Not specified'}
 Time: ${data.timestamp}
+${data.error ? `Error: ${data.error}` : ''}
 
 User Message: ${data.userMessage}
 Bot Response: ${data.botResponse}
@@ -141,6 +163,7 @@ Bot Response: ${data.botResponse}
           ...data
         }),
       });
+      console.log('🔗 Webhook notification sent');
     }
 
     // Log to console for development
@@ -149,22 +172,39 @@ Bot Response: ${data.botResponse}
       sessionId: data.sessionId,
       timestamp: data.timestamp,
       userMessageLength: data.userMessage.length,
-      mood: data.mood
+      mood: data.mood,
+      hasError: !!data.error
     });
 
   } catch (error) {
-    console.error('Failed to notify developer:', error);
+    console.error('❌ Failed to notify developer:', error);
   }
 }
 
 // Chat endpoint
 router.post('/chat', async (req, res) => {
+  const startTime = Date.now();
+  console.log(`\n📥 Incoming chat request:`, {
+    botType: req.body.botType,
+    sessionId: req.body.sessionId,
+    messageLength: req.body.message?.length
+  });
+
   try {
     const validatedData = ChatMessageSchema.parse(req.body);
     const { message, botType, userId, sessionId, mood, context } = validatedData;
 
-    // Generate LLM response
-    const botResponse = await callLLM(message, botType, context);
+    let botResponse: string;
+    let error: string | undefined;
+
+    try {
+      // Generate LLM response
+      botResponse = await callLLM(message, botType, context);
+    } catch (llmError) {
+      console.error('❌ LLM Error:', llmError);
+      error = llmError instanceof Error ? llmError.message : 'LLM API failed';
+      botResponse = "I apologize, but I'm experiencing some technical difficulties right now. Please try again in a moment, or contact support if the issue persists.";
+    }
 
     // Notify developer
     await notifyDeveloper({
@@ -174,7 +214,8 @@ router.post('/chat', async (req, res) => {
       sessionId,
       timestamp: new Date().toISOString(),
       userId,
-      mood
+      mood,
+      error
     });
 
     // Determine if response should show special actions
@@ -192,6 +233,9 @@ router.post('/chat', async (req, res) => {
       !mood
     );
 
+    const responseTime = Date.now() - startTime;
+    console.log(`✅ Chat response completed in ${responseTime}ms`);
+
     res.json({
       success: true,
       response: {
@@ -199,14 +243,20 @@ router.post('/chat', async (req, res) => {
         showCalmingActions,
         showMoodCheck,
         timestamp: new Date().toISOString(),
-        sessionId
+        sessionId,
+        responseTime
+      },
+      debug: {
+        llmUsed: !!OPENAI_API_KEY,
+        error: error || null
       }
     });
 
   } catch (error) {
-    console.error('Chat API Error:', error);
+    console.error('❌ Chat API Error:', error);
     
     if (error instanceof z.ZodError) {
+      console.error('❌ Validation errors:', error.errors);
       return res.status(400).json({
         success: false,
         error: 'Invalid request data',
@@ -217,31 +267,58 @@ router.post('/chat', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: 'Sorry, I\'m having trouble responding right now. Please try again.'
+      message: 'Sorry, I\'m having trouble responding right now. Please try again.',
+      debug: {
+        timestamp: new Date().toISOString(),
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }
     });
   }
 });
 
 // Health check endpoint
 router.get('/health', (req, res) => {
+  console.log('🏥 Health check requested');
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
     llmConfigured: !!OPENAI_API_KEY,
-    notificationsConfigured: !!(DEVELOPER_WEBHOOK_URL || DEVELOPER_EMAIL)
+    notificationsConfigured: !!(DEVELOPER_WEBHOOK_URL || DEVELOPER_EMAIL),
+    environment: process.env.NODE_ENV || 'development',
+    chatHistoryCount: chatHistory.length
   });
 });
 
-// Get chat history endpoint
-router.get('/history/:sessionId', (req, res) => {
+// Get chat history endpoint (for developers)
+router.get('/history/:sessionId?', (req, res) => {
   const { sessionId } = req.params;
   
-  // In a real app, you'd fetch from database
-  // For now, return empty array
+  let history = chatHistory;
+  if (sessionId) {
+    history = chatHistory.filter(h => h.sessionId === sessionId);
+  }
+  
+  console.log(`📊 Chat history requested: ${history.length} entries`);
+  
   res.json({
     success: true,
-    history: [],
-    sessionId
+    history: history.slice(-50), // Return last 50 entries
+    totalCount: chatHistory.length,
+    sessionId: sessionId || 'all'
+  });
+});
+
+// Clear chat history endpoint (for developers)
+router.delete('/history', (req, res) => {
+  const count = chatHistory.length;
+  chatHistory.length = 0;
+  
+  console.log(`🗑️  Chat history cleared: ${count} entries removed`);
+  
+  res.json({
+    success: true,
+    message: `Cleared ${count} chat history entries`,
+    timestamp: new Date().toISOString()
   });
 });
 
