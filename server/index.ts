@@ -3,9 +3,15 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import demoRoutes from './routes/demo';
 import chatRoutes from './routes/chat';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 // Load environment variables
 dotenv.config();
+
+// ES module equivalent of __filename and __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export function createServer() {
   const app = express();
@@ -53,8 +59,10 @@ export function createServer() {
   return app;
 }
 
-// Only start the server when this file is run directly (not imported)
-if (require.main === module) {
+// Check if this module is being run directly
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+
+if (isMainModule) {
   const app = createServer();
   const port = process.env.PORT || 3001;
   
