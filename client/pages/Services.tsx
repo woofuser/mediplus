@@ -1,6 +1,17 @@
 import { WebsiteHeader } from "@/components/ui/website-header";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, FileText, Pill, Calendar, Brain, MessageSquare, Dumbbell, Activity, ClipboardList, Heart } from "lucide-react";
+import {
+  ChevronLeft,
+  FileText,
+  Pill,
+  Calendar,
+  Brain,
+  MessageSquare,
+  Dumbbell,
+  Activity,
+  ClipboardList,
+  Heart,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Services() {
@@ -9,75 +20,75 @@ export default function Services() {
       icon: FileText,
       title: "Check-in Your Vitals",
       link: "/medbot/check-in",
-      description: "Monitor blood pressure, heart rate, and vital signs"
+      description: "Monitor blood pressure, heart rate, and vital signs",
     },
     {
       icon: Pill,
       title: "Medications",
       link: "#",
-      description: "Track medication schedules and adherence"
+      description: "Track medication schedules and adherence",
     },
     {
       icon: Calendar,
       title: "Appointments",
       link: "/medbot/appointments",
-      description: "Schedule and manage medical appointments"
+      description: "Schedule and manage medical appointments",
     },
     {
       icon: Brain,
       title: "Mental Health",
       link: "/medbot/mental-health",
-      description: "Mood tracking and wellness resources"
+      description: "Mood tracking and wellness resources",
     },
     {
       icon: MessageSquare,
       title: "MedBot",
       link: "/medbot",
       isBot: true,
-      description: "AI-powered health assistant and chat"
+      description: "AI-powered health assistant and chat",
     },
     {
       icon: Activity,
       title: "Mental Health Resources",
       link: "/medbot/mental-health-resources",
-      description: "Mindfulness and meditation guidance"
+      description: "Mindfulness and meditation guidance",
     },
     {
       icon: Brain,
       title: "MindfulBot",
       link: "/medbot/mindful-bot",
-      description: "AI-powered mental health support and guidance"
+      description: "AI-powered mental health support and guidance",
     },
     {
       icon: Heart,
       title: "MedBot Assistant",
       link: "/medbot/medbot-chat",
-      description: "AI medical information and health guidance"
+      description: "AI medical information and health guidance",
     },
     {
       icon: Dumbbell,
       title: "Exercise & Wellness",
       link: "/medbot/exercise-wellness",
-      description: "Fitness tracking and workout plans"
+      description: "Fitness tracking and workout plans",
     },
     {
       icon: Activity,
       title: "Health Overview",
       link: "/medbot/health-overview",
-      description: "Comprehensive health analytics and insights"
+      description: "Comprehensive health analytics and insights",
     },
     {
       icon: ClipboardList,
       title: "Mental Health Overview",
       link: "/medbot/mental-health-overview",
-      description: "Mental wellness tracking and reports"
+      description: "Mental wellness tracking and reports",
     },
     {
       icon: MessageSquare,
       title: "Questions to Ask Doctor",
       link: "/medbot/questions",
-      description: "AI-generated questions for medical visits"
-    }
+      description: "AI-generated questions for medical visits",
+    },
   ];
 
   return (
@@ -96,7 +107,9 @@ export default function Services() {
           <h1 className="text-3xl font-bold text-black">Services</h1>
         </div>
 
-        <h2 className="text-xl font-bold text-black mb-8">Service Categories</h2>
+        <h2 className="text-xl font-bold text-black mb-8">
+          Service Categories
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {serviceCategories.map((service, index) => (
