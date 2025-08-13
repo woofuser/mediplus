@@ -63,22 +63,26 @@ export default function HomeDashboard() {
 
             {/* Action Cards */}
             <div className="grid grid-cols-3 gap-6">
-              <div className="bg-yellow-200 rounded-3xl p-6 text-center hover:bg-yellow-300 transition-colors cursor-pointer">
-                <Calendar className="w-10 h-10 text-black mx-auto mb-3" />
-                <span className="text-black text-sm font-bold">Appointment</span>
-              </div>
-              
+              <Link to="/medbot/appointments">
+                <div className="bg-yellow-200 rounded-3xl p-6 text-center hover:bg-yellow-300 transition-colors">
+                  <Calendar className="w-10 h-10 text-black mx-auto mb-3" />
+                  <span className="text-black text-sm font-bold">Appointment</span>
+                </div>
+              </Link>
+
               <Link to="/medbot/mental-health">
                 <div className="bg-yellow-200 rounded-3xl p-6 text-center hover:bg-yellow-300 transition-colors">
                   <Users className="w-10 h-10 text-black mx-auto mb-3" />
                   <span className="text-black text-sm font-bold">Mental Health</span>
                 </div>
               </Link>
-              
-              <div className="bg-yellow-200 rounded-3xl p-6 text-center hover:bg-yellow-300 transition-colors cursor-pointer">
-                <Dumbbell className="w-10 h-10 text-black mx-auto mb-3" />
-                <span className="text-black text-sm font-bold">Exercise Wellness</span>
-              </div>
+
+              <Link to="/medbot/exercise-wellness">
+                <div className="bg-yellow-200 rounded-3xl p-6 text-center hover:bg-yellow-300 transition-colors">
+                  <Dumbbell className="w-10 h-10 text-black mx-auto mb-3" />
+                  <span className="text-black text-sm font-bold">Exercise Wellness</span>
+                </div>
+              </Link>
             </div>
           </div>
 
