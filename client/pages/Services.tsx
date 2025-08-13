@@ -1,6 +1,6 @@
 import { WebsiteHeader } from "@/components/ui/website-header";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, FileText, Pill, Calendar, Brain, MessageSquare, Dumbbell, Activity, ClipboardList } from "lucide-react";
+import { ChevronLeft, FileText, Pill, Calendar, Brain, MessageSquare, Dumbbell, Activity, ClipboardList, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Services() {
