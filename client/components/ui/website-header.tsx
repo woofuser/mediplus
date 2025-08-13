@@ -61,6 +61,11 @@ export function WebsiteHeader() {
 
           {/* User Actions */}
           <div className="flex items-center space-x-4">
+            <Link to="/developer">
+              <Button variant="outline" size="sm" className="text-purple-600 border-purple-300 hover:bg-purple-50">
+                🔧 Developer
+              </Button>
+            </Link>
             <Button variant="outline" size="sm">
               Settings
             </Button>

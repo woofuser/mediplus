@@ -1,11 +1,11 @@
 import { WebsiteHeader } from "@/components/ui/website-header";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Plus, Send, Camera, Mic, Brain, Wifi, WifiOff } from "lucide-react";
+import { ChevronLeft, Plus, Send, Camera, Mic, Heart, Wifi, WifiOff, Pill, Activity, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { useChat } from "@/hooks/use-chat";
 import { Link } from "react-router-dom";
 
-export default function MindfulBot() {
+export default function MedBotChat() {
   const [inputMessage, setInputMessage] = useState("");
   
   const {
@@ -13,38 +13,29 @@ export default function MindfulBot() {
     isTyping,
     error,
     sessionId,
-    currentMood,
     messagesEndRef,
     sendMessage,
     handleQuickAction,
-    handleMoodSelection,
-    handleCalmingAction,
     clearChat
   } = useChat({
-    botType: 'mindful',
-    initialGreeting: "Hello! I'm MindfulBot, your AI mental health companion. 🤗\n\nI'm here to provide support, listen without judgment, and help you explore coping strategies. How are you feeling today?"
+    botType: 'medbot',
+    initialGreeting: "Hello! I'm MedBot, your medical information assistant. 🏥\n\nI can help with general health questions, medication information, and wellness guidance. Please remember that I'm not a replacement for professional medical advice.\n\nWhat health topic can I help you with today?"
   });
 
   const quickActions = [
-    "I'm feeling anxious",
-    "I need breathing exercises", 
-    "I want to meditate",
-    "Crisis support needed"
+    "Tell me about my medications",
+    "What are healthy lifestyle tips?",
+    "I have symptoms to discuss",
+    "Blood pressure information",
+    "Diabetes management help",
+    "Exercise recommendations"
   ];
 
-  const calmingActions = [
-    "Start 5-minute breathing exercise",
-    "Play calming music",
-    "Write in mindfulness journal",
-    "Try progressive muscle relaxation"
-  ];
-
-  const moodOptions = [
-    { emoji: "😊", label: "Great", value: "great", color: "bg-green-100 border-green-300" },
-    { emoji: "🙂", label: "Good", value: "good", color: "bg-blue-100 border-blue-300" },
-    { emoji: "😐", label: "Okay", value: "okay", color: "bg-yellow-100 border-yellow-300" },
-    { emoji: "😟", label: "Not great", value: "bad", color: "bg-orange-100 border-orange-300" },
-    { emoji: "😢", label: "Struggling", value: "struggling", color: "bg-red-100 border-red-300" }
+  const medicalTopics = [
+    { icon: Pill, label: "Medications", action: "Tell me about medication management" },
+    { icon: Activity, label: "Vital Signs", action: "Help me understand my vital signs" },
+    { icon: Heart, label: "Heart Health", action: "I want to learn about heart health" },
+    { icon: AlertCircle, label: "Symptoms", action: "I have some symptoms I'd like to discuss" }
   ];
 
   const handleSendMessage = async () => {
@@ -63,7 +54,7 @@ export default function MindfulBot() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-purple-25 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50">
       <WebsiteHeader />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -72,19 +63,19 @@ export default function MindfulBot() {
           {/* Header */}
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
             <div className="flex items-center gap-4">
-              <Link to="/medbot/mental-health">
+              <Link to="/medbot">
                 <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
                   <ChevronLeft className="w-5 h-5" />
                 </Button>
               </Link>
-              <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center shadow-lg">
-                <Brain className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg">
+                <Heart className="w-7 h-7 text-white" />
               </div>
               <div className="flex-1">
-                <h1 className="text-3xl font-bold text-gray-900">MindfulBot</h1>
+                <h1 className="text-3xl font-bold text-gray-900">MedBot</h1>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <p className="text-gray-600">AI Mental Health Companion • Session: {sessionId.slice(-8)}</p>
+                  <p className="text-gray-600">AI Medical Assistant • Session: {sessionId.slice(-8)}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -111,6 +102,19 @@ export default function MindfulBot() {
             </div>
           </div>
 
+          {/* Medical Disclaimer */}
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-semibold text-amber-800">Medical Disclaimer</h3>
+                <p className="text-amber-700 text-sm mt-1">
+                  This AI assistant provides general health information only. Always consult with healthcare professionals for medical advice, diagnosis, or treatment. In case of emergency, call 911 immediately.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Error Banner */}
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
@@ -125,7 +129,7 @@ export default function MindfulBot() {
           )}
 
           {/* Chat Container */}
-          <div className="bg-gradient-to-b from-purple-50 to-white rounded-2xl border border-purple-200 shadow-lg p-6 mb-6">
+          <div className="bg-gradient-to-b from-blue-50 to-white rounded-2xl border border-blue-200 shadow-lg p-6 mb-6">
             
             {/* Messages */}
             <div className="space-y-6 min-h-[500px] max-h-[600px] overflow-y-auto pr-2">
@@ -134,10 +138,10 @@ export default function MindfulBot() {
                   {message.type === "bot" ? (
                     <div className="max-w-md md:max-w-lg">
                       <div className="flex items-start gap-3 mb-4">
-                        <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Brain className="w-4 h-4 text-white" />
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Heart className="w-4 h-4 text-white" />
                         </div>
-                        <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-3xl rounded-tl-lg p-6 shadow-md border border-orange-300">
+                        <div className="bg-gradient-to-r from-blue-100 to-blue-200 rounded-3xl rounded-tl-lg p-6 shadow-md border border-blue-300">
                           <p className="text-gray-800 text-sm leading-relaxed whitespace-pre-line">
                             {message.message}
                           </p>
@@ -150,8 +154,8 @@ export default function MindfulBot() {
                       {/* Quick Actions */}
                       {(message.isGreeting || message.showQuickActions) && (
                         <div className="ml-11 mb-4">
-                          <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-2xl p-4 shadow-md border border-orange-300">
-                            <h3 className="text-gray-800 text-sm font-bold mb-3">Quick Actions</h3>
+                          <div className="bg-gradient-to-r from-blue-100 to-blue-200 rounded-2xl p-4 shadow-md border border-blue-300">
+                            <h3 className="text-gray-800 text-sm font-bold mb-3">How can I help you today?</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                               {quickActions.map((action, actionIndex) => (
                                 <Button
@@ -159,7 +163,7 @@ export default function MindfulBot() {
                                   onClick={() => handleQuickAction(action)}
                                   variant="outline"
                                   size="sm"
-                                  className="bg-white/80 border-purple-300 text-gray-700 text-xs hover:bg-purple-50 rounded-full transition-all duration-200 hover:scale-105"
+                                  className="bg-white/80 border-blue-300 text-gray-700 text-xs hover:bg-blue-50 rounded-full transition-all duration-200 hover:scale-105"
                                   disabled={isTyping}
                                 >
                                   {action}
@@ -170,45 +174,22 @@ export default function MindfulBot() {
                         </div>
                       )}
 
-                      {/* Mood Check */}
-                      {message.showMoodCheck && (
-                        <div className="ml-11 mb-4">
-                          <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-4 shadow-md border border-blue-200">
-                            <h3 className="text-gray-800 text-sm font-bold mb-3">How are you feeling?</h3>
-                            <div className="grid grid-cols-5 gap-2">
-                              {moodOptions.map((mood) => (
-                                <Button
-                                  key={mood.value}
-                                  onClick={() => handleMoodSelection(mood.value, mood.label)}
-                                  variant="outline"
-                                  className={`${mood.color} text-gray-700 text-xs hover:scale-110 transition-all duration-200 flex flex-col items-center p-3 h-auto`}
-                                  disabled={isTyping}
-                                >
-                                  <span className="text-lg mb-1">{mood.emoji}</span>
-                                  <span>{mood.label}</span>
-                                </Button>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Calming Actions */}
-                      {message.showCalmingActions && (
+                      {/* Medical Topics */}
+                      {message.isGreeting && (
                         <div className="ml-11 mb-4">
                           <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-4 shadow-md border border-green-200">
-                            <h3 className="text-gray-800 text-sm font-bold mb-3">Try these activities</h3>
-                            <div className="space-y-2">
-                              {calmingActions.map((action, actionIndex) => (
+                            <h3 className="text-gray-800 text-sm font-bold mb-3">Popular Topics</h3>
+                            <div className="grid grid-cols-2 gap-3">
+                              {medicalTopics.map((topic, index) => (
                                 <Button
-                                  key={actionIndex}
-                                  onClick={() => handleCalmingAction(action)}
+                                  key={index}
+                                  onClick={() => handleQuickAction(topic.action)}
                                   variant="outline"
-                                  size="sm"
-                                  className="w-full bg-white/80 border-green-300 text-gray-700 text-xs hover:bg-green-50 rounded-full transition-all duration-200 hover:scale-105"
+                                  className="bg-white/80 border-green-300 text-gray-700 text-xs hover:bg-green-50 rounded-xl p-3 h-auto flex flex-col items-center gap-2"
                                   disabled={isTyping}
                                 >
-                                  {action}
+                                  <topic.icon className="w-5 h-5" />
+                                  <span>{topic.label}</span>
                                 </Button>
                               ))}
                             </div>
@@ -219,7 +200,7 @@ export default function MindfulBot() {
                   ) : (
                     <div className="max-w-md md:max-w-lg ml-auto">
                       <div className="flex items-start gap-3 justify-end">
-                        <div className="bg-gradient-to-r from-purple-200 to-purple-300 rounded-3xl rounded-tr-lg p-4 shadow-md border border-purple-400">
+                        <div className="bg-gradient-to-r from-green-200 to-green-300 rounded-3xl rounded-tr-lg p-4 shadow-md border border-green-400">
                           <p className="text-gray-800 text-sm">
                             {message.message}
                           </p>
@@ -227,7 +208,7 @@ export default function MindfulBot() {
                             {message.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                           </div>
                         </div>
-                        <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-white text-xs font-bold">U</span>
                         </div>
                       </div>
@@ -239,15 +220,15 @@ export default function MindfulBot() {
               {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full flex items-center justify-center">
-                    <Brain className="w-4 h-4 text-white" />
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-white" />
                   </div>
-                  <div className="bg-gradient-to-r from-orange-100 to-orange-200 rounded-3xl rounded-tl-lg p-4 shadow-md border border-orange-300">
+                  <div className="bg-gradient-to-r from-blue-100 to-blue-200 rounded-3xl rounded-tl-lg p-4 shadow-md border border-blue-300">
                     <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-100"></div>
-                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-200"></div>
-                      <span className="text-gray-600 text-sm ml-2">MindfulBot is thinking...</span>
+                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-100"></div>
+                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-200"></div>
+                      <span className="text-gray-600 text-sm ml-2">MedBot is analyzing...</span>
                     </div>
                   </div>
                 </div>
@@ -263,9 +244,9 @@ export default function MindfulBot() {
                 <Plus className="w-5 h-5" />
               </Button>
               
-              <div className="flex-1 bg-gray-50 rounded-2xl px-6 py-3 border border-gray-200 focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-200">
+              <div className="flex-1 bg-gray-50 rounded-2xl px-6 py-3 border border-gray-200 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200">
                 <textarea
-                  placeholder="Type your message here... (Press Enter to send)"
+                  placeholder="Ask me about medications, symptoms, or health information... (Press Enter to send)"
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
@@ -278,7 +259,7 @@ export default function MindfulBot() {
               <Button
                 onClick={handleSendMessage}
                 disabled={!inputMessage.trim() || isTyping}
-                className="bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-5 h-5" />
               </Button>
@@ -287,50 +268,49 @@ export default function MindfulBot() {
             {/* Chat Features */}
             <div className="mt-4 flex flex-wrap gap-2">
               <Button
-                onClick={() => handleQuickAction("I want to meditate")}
+                onClick={() => handleQuickAction("What medications should I take for high blood pressure?")}
                 variant="outline"
                 size="sm"
                 className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 rounded-full"
                 disabled={isTyping}
               >
-                🧘 Start Meditation
+                💊 Medications
               </Button>
               <Button
-                onClick={() => handleQuickAction("I need a mood check")}
+                onClick={() => handleQuickAction("Tell me about healthy diet tips")}
                 variant="outline"
                 size="sm"
                 className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100 rounded-full"
                 disabled={isTyping}
               >
-                🌱 Mood Check
+                🥗 Nutrition
               </Button>
               <Button
-                onClick={() => handleQuickAction("I want to journal")}
-                variant="outline"
-                size="sm"
-                className="bg-purple-50 border-purple-200 text-purple-700 hover:bg-purple-100 rounded-full"
-                disabled={isTyping}
-              >
-                📝 Journal Entry
-              </Button>
-              <Button
-                onClick={() => handleQuickAction("I need crisis support")}
+                onClick={() => handleQuickAction("How can I improve my heart health?")}
                 variant="outline"
                 size="sm"
                 className="bg-red-50 border-red-200 text-red-700 hover:bg-red-100 rounded-full"
                 disabled={isTyping}
               >
-                🆘 Crisis Support
+                ❤️ Heart Health
+              </Button>
+              <Button
+                onClick={() => handleQuickAction("I need emergency medical information")}
+                variant="outline"
+                size="sm"
+                className="bg-amber-50 border-amber-200 text-amber-700 hover:bg-amber-100 rounded-full"
+                disabled={isTyping}
+              >
+                🚨 Emergency Info
               </Button>
             </div>
 
             {/* Connection Status */}
             <div className="mt-3 text-center">
               <p className="text-xs text-gray-500">
-                {isTyping ? "MindfulBot is responding..." : 
+                {isTyping ? "MedBot is analyzing your question..." : 
                  error ? "Reconnecting..." : 
                  `Connected • Session ${sessionId.slice(-8)}`}
-                {currentMood && ` • Mood: ${currentMood}`}
               </p>
             </div>
           </div>
