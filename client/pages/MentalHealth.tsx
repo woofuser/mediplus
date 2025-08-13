@@ -243,25 +243,59 @@ export default function MentalHealth() {
               </div>
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-1 gap-4">
-                <Link to="/medbot/mindful-bot">
-                  <Button className="w-full bg-gradient-to-r from-purple-200 to-purple-300 hover:from-purple-300 hover:to-purple-400 text-gray-900 rounded-2xl py-8 flex flex-col items-center gap-3 border border-purple-300 shadow-lg hover:shadow-xl transition-all duration-200">
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                      <Hand className="w-6 h-6 text-purple-600" />
+              <div className="grid grid-cols-1 gap-6">
+                <Link to="/medbot/mindful-bot" className="group">
+                  <div className="relative overflow-hidden bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 rounded-3xl p-1 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <div className="bg-gradient-to-br from-purple-100 to-purple-200 rounded-3xl p-8 h-full relative overflow-hidden">
+                      {/* Background pattern */}
+                      <div className="absolute inset-0 opacity-10">
+                        <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-purple-300"></div>
+                        <div className="absolute bottom-4 left-4 w-16 h-16 rounded-full bg-purple-400"></div>
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-purple-200"></div>
+                      </div>
+
+                      <div className="relative z-10 flex flex-col items-center text-center">
+                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                          <Hand className="w-8 h-8 text-purple-600" />
+                        </div>
+                        <h3 className="font-bold text-xl text-gray-900 mb-2">MindfulBot</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed">Chat with AI companion</p>
+
+                        {/* Animated indicator */}
+                        <div className="mt-4 flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          <span className="text-xs text-gray-600 font-medium">Available 24/7</span>
+                        </div>
+                      </div>
                     </div>
-                    <span className="font-semibold text-lg">MindfulBot</span>
-                    <span className="text-sm text-gray-700">Chat with AI companion</span>
-                  </Button>
+                  </div>
                 </Link>
-                
-                <Link to="/medbot/mental-health-resources">
-                  <Button className="w-full bg-gradient-to-r from-blue-200 to-blue-300 hover:from-blue-300 hover:to-blue-400 text-gray-900 rounded-2xl py-8 flex flex-col items-center gap-3 border border-blue-300 shadow-lg hover:shadow-xl transition-all duration-200">
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                      <BookOpen className="w-6 h-6 text-blue-600" />
+
+                <Link to="/medbot/mental-health-resources" className="group">
+                  <div className="relative overflow-hidden bg-gradient-to-br from-blue-400 via-blue-500 to-cyan-500 rounded-3xl p-1 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <div className="bg-gradient-to-br from-blue-100 to-cyan-100 rounded-3xl p-8 h-full relative overflow-hidden">
+                      {/* Background pattern */}
+                      <div className="absolute inset-0 opacity-10">
+                        <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-blue-300"></div>
+                        <div className="absolute bottom-4 left-4 w-16 h-16 rounded-full bg-cyan-400"></div>
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-blue-200"></div>
+                      </div>
+
+                      <div className="relative z-10 flex flex-col items-center text-center">
+                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300">
+                          <BookOpen className="w-8 h-8 text-blue-600" />
+                        </div>
+                        <h3 className="font-bold text-xl text-gray-900 mb-2">Resources</h3>
+                        <p className="text-gray-700 text-sm leading-relaxed">Mental health tools & guides</p>
+
+                        {/* Resource count indicator */}
+                        <div className="mt-4 flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span className="text-xs text-gray-600 font-medium">50+ Resources</span>
+                        </div>
+                      </div>
                     </div>
-                    <span className="font-semibold text-lg">Resources</span>
-                    <span className="text-sm text-gray-700">Mental health tools & guides</span>
-                  </Button>
+                  </div>
                 </Link>
               </div>
 
