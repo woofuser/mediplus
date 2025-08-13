@@ -19,7 +19,7 @@ export function createServer() {
   // Routes (without /api prefix since Vite handles that)
   app.use("/demo", demoRoutes);
   app.use("/test", testRoutes);
-  app.use("/", chatRoutes);
+  app.use("/api/chat", chatRoutes);
 
   // Health check
   app.get("/health", (req, res) => {
